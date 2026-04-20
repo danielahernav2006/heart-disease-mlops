@@ -416,6 +416,7 @@ document.write(`
 
 
 
+
 <span class="c1"># cargamos los datos</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/heart.csv&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FastingBS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;FastingBS&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;object&quot;</span><span class="p">)</span> <span class="c1">#convertimos a &#39;FastingBS&#39; catalogada como numérica a categórica.</span>
@@ -543,15 +544,15 @@ Columnas categóricas: [&#39;Sex&#39;, &#39;ChestPainType&#39;, &#39;FastingBS&#
 <span class="c1"># definimos los modelos a utilizar con su param grid </span>
 <span class="n">modelos</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;SVC&quot;</span><span class="p">:</span> <span class="p">(</span>
-        <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
         <span class="p">{</span><span class="s2">&quot;clf__C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s2">&quot;clf__gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]}</span>
     <span class="p">),</span>
     <span class="s2">&quot;LogisticRegression&quot;</span><span class="p">:</span> <span class="p">(</span>
-        <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span>
+        <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
         <span class="p">{</span><span class="s2">&quot;clf__C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]}</span>
     <span class="p">),</span>
     <span class="s2">&quot;RandomForest&quot;</span><span class="p">:</span> <span class="p">(</span>
-        <span class="n">RandomForestClassifier</span><span class="p">(),</span>
+        <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
         <span class="p">{</span><span class="s2">&quot;clf__n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="s2">&quot;clf__max_depth&quot;</span><span class="p">:[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]}</span>
     <span class="p">),</span>
     <span class="s2">&quot;KNN&quot;</span><span class="p">:</span> <span class="p">(</span>
@@ -559,7 +560,7 @@ Columnas categóricas: [&#39;Sex&#39;, &#39;ChestPainType&#39;, &#39;FastingBS&#
         <span class="p">{</span><span class="s2">&quot;clf__n_neighbors&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]}</span>
     <span class="p">),</span>
     <span class="s2">&quot;GradientBoosting&quot;</span><span class="p">:</span> <span class="p">(</span>
-        <span class="n">GradientBoostingClassifier</span><span class="p">(),</span>
+        <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
         <span class="p">{</span><span class="s2">&quot;clf__n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="s2">&quot;clf__learning_rate&quot;</span><span class="p">:[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]}</span>
     <span class="p">)</span>
 <span class="p">}</span>
@@ -604,17 +605,17 @@ Columnas categóricas: [&#39;Sex&#39;, &#39;ChestPainType&#39;, &#39;FastingBS&#
   <tbody>
     <tr>
       <th>1</th>
+      <td>RandomForest</td>
+      <td>0.941655</td>
+      <td>0.891304</td>
+      <td>0.925795</td>
+    </tr>
+    <tr>
+      <th>2</th>
       <td>SVC</td>
       <td>0.933525</td>
       <td>0.858696</td>
       <td>0.917403</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>RandomForest</td>
-      <td>0.932688</td>
-      <td>0.869565</td>
-      <td>0.924910</td>
     </tr>
     <tr>
       <th>3</th>
@@ -633,9 +634,9 @@ Columnas categóricas: [&#39;Sex&#39;, &#39;ChestPainType&#39;, &#39;FastingBS&#
     <tr>
       <th>5</th>
       <td>GradientBoosting</td>
-      <td>0.920253</td>
+      <td>0.920732</td>
       <td>0.858696</td>
-      <td>0.922120</td>
+      <td>0.922497</td>
     </tr>
   </tbody>
 </table>
@@ -676,14 +677,14 @@ Columnas categóricas: [&#39;Sex&#39;, &#39;ChestPainType&#39;, &#39;FastingBS&#
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5be5a6bb013ddf091fbb9251eeb8cae8163c4c66d2efa83331328d0908dcc68a.png" src="../_images/5be5a6bb013ddf091fbb9251eeb8cae8163c4c66d2efa83331328d0908dcc68a.png" />
+<img alt="../_images/1563ea665cbffa9c45a97f651054f29bbed6f8e5ef7d696d8caad30380acb067.png" src="../_images/1563ea665cbffa9c45a97f651054f29bbed6f8e5ef7d696d8caad30380acb067.png" />
 </div>
 </div>
 <p>La tabla muestra los resultados de cada modelo sobre el conjunto de prueba, usando métricas como AUC, Accuracy y el promedio del AUC obtenido por validación cruzada (AUC VC).
-En términos generales, todos los modelos se comportaron muy bien: ninguno bajó de 0.90 en ninguna de las métricas. Algo que también llama la atención es que las diferencias entre el AUC en test y el de validación cruzada son bastante pequeñas (ninguna supera 0.025), lo que indica que los modelos no se están simplemente “memorizando” los datos, sino que logran generalizar bien a ejemplos nuevos. A primera vista, RandomForest destaca ligeramente con un AUC cercano a 0.93. Dicho esto, las diferencias entre modelos son tan pequeñas que no conviene apresurarse a declarar un ganador claro. Además, varios de estos algoritmos tienen un componente aleatorio, tanto en su entrenamiento como en la validación, por lo que los resultados pueden variar un poco de una ejecución a otra, y el modelo que quede primero podría cambiar.
+En términos generales, todos los modelos se comportaron muy bien: ninguno bajó de 0.90 en ninguna de las métricas. Algo que también llama la atención es que las diferencias entre el AUC en test y el de validación cruzada son bastante pequeñas (ninguna supera 0.028), lo que indica que los modelos no se están simplemente “memorizando” los datos, sino que logran generalizar bien a ejemplos nuevos. A primera vista, RandomForest destaca ligeramente con un AUC cercano a 0.94. Dicho esto, las diferencias entre modelos son tan pequeñas que no conviene apresurarse a declarar un ganador claro. Además, de que los resultados pueden variar dependiendo de la cantidad de parámetros que se hayan definido previamente.
 En definitiva, todos los modelos evaluados rinden de forma muy parecida. Por eso, a la hora de elegir uno, tiene sentido mirar más allá de los números y considerar aspectos como qué tan fácil es interpretar sus decisiones, qué tan complejo es el modelo o cuánto tiempo y recursos consume.</p>
-<p>Sabemos que se obtuvo un <code class="docutils literal notranslate"><span class="pre">ROC-AUC</span> <span class="pre">=</span> <span class="pre">0.93</span></code>, lo que indica que existe un 93% de probabilidad de que el modelo asigne un mayor score de probabilidad a un paciente que realmente padece enfermedad cardíaca que a uno que no la padece. En otras palabras, el modelo logra discriminar de manera eficiente entre pacientes con y sin enfermedad cardíaca en términos de sus probabilidades predichas.</p>
-<p>Por otro lado, el mejor accuracy fue de 0.89, obtenido por el modelo de Logistic Regression. En otros escenarios, esta métrica podría no ser la más adecuada debido a su sensibilidad al desbalance de clases; sin embargo, en este caso, como el dataset no presenta un desbalance significativo, su interpretación sigue siendo válida. Esto indica que el modelo clasifica correctamente el 89% de los casos, mientras que el 11% restante corresponde a predicciones incorrectas. En general, se observa un buen desempeño en ambas métricas. No obstante, para la selección del mejor modelo se priorizará el AUC, ya que proporciona una evaluación más robusta de la capacidad de discriminación del modelo.</p>
+<p>Sabemos que se obtuvo un <code class="docutils literal notranslate"><span class="pre">ROC-AUC</span> <span class="pre">=</span> <span class="pre">0.94</span></code>, lo que indica que existe un 94% de probabilidad de que el modelo asigne un mayor score de probabilidad a un paciente que realmente padece enfermedad cardíaca que a uno que no la padece. En otras palabras, el modelo logra discriminar de manera eficiente entre pacientes con y sin enfermedad cardíaca en términos de sus probabilidades predichas.</p>
+<p>Por otro lado, el mejor accuracy fue de 0.89, obtenido también por el modelo de Random Forest. En otros escenarios, esta métrica podría no ser la más adecuada debido a su sensibilidad al desbalance de clases; sin embargo, en este caso, como el dataset no presenta un desbalance significativo, su interpretación sigue siendo válida. Esto indica que el modelo clasifica correctamente el 89% de los casos, mientras que el 11% restante corresponde a predicciones incorrectas. En general, se observa un buen desempeño en ambas métricas. No obstante, para la selección del mejor modelo se priorizará el AUC, ya que proporciona una evaluación más robusta de la capacidad de discriminación del modelo.</p>
 </section>
 <section id="seleccion-del-mejor-modelo">
 <h2><strong>5. Selección del mejor modelo</strong><a class="headerlink" href="#seleccion-del-mejor-modelo" title="Permalink to this heading">#</a></h2>
@@ -698,13 +699,13 @@ En definitiva, todos los modelos evaluados rinden de forma muy parecida. Por eso
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor modelo: SVC
-Mejores parámetros: {&#39;clf__C&#39;: 10, &#39;clf__gamma&#39;: 0.1}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor modelo: RandomForest
+Mejores parámetros: {&#39;clf__max_depth&#39;: None, &#39;clf__n_estimators&#39;: 200}
 </pre></div>
 </div>
 </div>
 </div>
-<p>El mejor modelo obtenido fue Random Forest, con una profundidad máxima de 10 y un número de árboles de 200. Una vez identificado el modelo con mejor desempeño, se procede a evaluar su rendimiento mediante la matriz de confusión y la curva ROC, con el fin de analizar en detalle su capacidad de clasificación y discriminación.</p>
+<p>El mejor modelo obtenido fue Random Forest, sin profundida máxima y un número de árboles de 200. Una vez identificado el modelo con mejor desempeño, se procede a evaluar su rendimiento mediante la matriz de confusión y la curva ROC, con el fin de analizar en detalle su capacidad de clasificación y discriminación.</p>
 <section id="matriz-de-confusion">
 <h3><strong>5.1 Matriz de confusión</strong><a class="headerlink" href="#matriz-de-confusion" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -722,10 +723,10 @@ Mejores parámetros: {&#39;clf__C&#39;: 10, &#39;clf__gamma&#39;: 0.1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1b3d9ffe0e3206c8ed938b3b939ab600b96c812050bcb4177c130e85956dbab1.png" src="../_images/1b3d9ffe0e3206c8ed938b3b939ab600b96c812050bcb4177c130e85956dbab1.png" />
+<img alt="../_images/7be21d5c297f464a4941450973afb9adfa26b79392289c0e833a667785360fe8.png" src="../_images/7be21d5c297f464a4941450973afb9adfa26b79392289c0e833a667785360fe8.png" />
 </div>
 </div>
-<p>En la matriz de confusión se observa que TP = 71, FP = 11, FN = 10 y TN = 92. Es decir, 71 pacientes que padecen enfermedad cardíaca fueron correctamente identificados por el modelo; 11 pacientes sin enfermedad fueron clasificados incorrectamente como positivos; 10 pacientes con enfermedad cardíaca fueron clasificados erróneamente como sanos, lo cual resulta especialmente crítico en el contexto médico; y 92 pacientes sanos fueron correctamente clasificados. En general, el modelo presenta un buen desempeño; sin embargo, aún se presentan falsos negativos, lo cual es preocupante, ya que implica no detectar pacientes que realmente tienen la enfermedad. En este contexto, esto podría traducirse en consecuencias graves para los pacientes. Por lo tanto, sería recomendable enfocar los esfuerzos en mejorar el recall del modelo, con el fin de reducir este tipo de errores.</p>
+<p>En la matriz de confusión se observa que TP = 71, FP = 11, FN = 9 y TN = 93. Es decir, 71 pacientes que padecen enfermedad cardíaca fueron correctamente identificados por el modelo; 11 pacientes sin enfermedad fueron clasificados incorrectamente como positivos; 9 pacientes con enfermedad cardíaca fueron clasificados erróneamente como sanos, lo cual resulta especialmente crítico en el contexto médico; y 93 pacientes sanos fueron correctamente clasificados. En general, el modelo presenta un buen desempeño; sin embargo, aún se presentan falsos negativos, lo cual es preocupante, ya que implica no detectar pacientes que realmente tienen la enfermedad. En este contexto, esto podría traducirse en consecuencias graves para los pacientes. Por lo tanto, sería recomendable enfocar los esfuerzos en mejorar el recall del modelo, con el fin de reducir este tipo de errores.</p>
 </section>
 <section id="curva-roc">
 <h3><strong>5.2 Curva ROC</strong><a class="headerlink" href="#curva-roc" title="Permalink to this heading">#</a></h3>
@@ -748,10 +749,10 @@ Mejores parámetros: {&#39;clf__C&#39;: 10, &#39;clf__gamma&#39;: 0.1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d47c30f60be8c5783eaa33eaca14b9033e71437ee0b74e63647bb52e4d251ee1.png" src="../_images/d47c30f60be8c5783eaa33eaca14b9033e71437ee0b74e63647bb52e4d251ee1.png" />
+<img alt="../_images/42259b0f0bdd0198c299afc34ba00080089f8a0f55c7d00a01834ce818a945ad.png" src="../_images/42259b0f0bdd0198c299afc34ba00080089f8a0f55c7d00a01834ce818a945ad.png" />
 </div>
 </div>
-<p>En la curva ROC, el eje horizontal representa la tasa de falsos positivos (FPR), mientras que el eje vertical representa la tasa de verdaderos positivos (TPR), también conocida como recall. Valores más pequeños en el eje FPR indican menos falsos positivos (FP) y más verdaderos negativos (TN), mientras que valores más altos en el eje TPR indican más verdaderos positivos (TP) y menos falsos negativos (FN). En este caso, la curva ROC se encuentra cercana a la esquina superior izquierda, lo que indica un excelente desempeño del modelo. Además, el valor de ROC-AUC de aproximadamente 0.93 confirma que el modelo tiene una alta capacidad de discriminación, logrando separar de manera efectiva a los pacientes con y sin enfermedad cardíaca en función de las probabilidades predichas.</p>
+<p>En la curva ROC, el eje horizontal representa la tasa de falsos positivos (FPR), mientras que el eje vertical representa la tasa de verdaderos positivos (TPR), también conocida como recall. Valores más pequeños en el eje FPR indican menos falsos positivos (FP) y más verdaderos negativos (TN), mientras que valores más altos en el eje TPR indican más verdaderos positivos (TP) y menos falsos negativos (FN). En este caso, la curva ROC se encuentra cercana a la esquina superior izquierda, lo que indica un excelente desempeño del modelo. Además, el valor de ROC-AUC de aproximadamente 0.94 confirma que el modelo tiene una alta capacidad de discriminación, logrando separar de manera efectiva a los pacientes con y sin enfermedad cardíaca en función de las probabilidades predichas.</p>
 </section>
 </section>
 <section id="exportacion-del-mejor-modelo">
@@ -767,7 +768,7 @@ Mejores parámetros: {&#39;clf__C&#39;: 10, &#39;clf__gamma&#39;: 0.1}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo &#39;SVC&#39; exportado exitosamente.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo &#39;RandomForest&#39; exportado exitosamente.
 </pre></div>
 </div>
 </div>
