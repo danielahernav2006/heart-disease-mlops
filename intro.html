@@ -365,17 +365,24 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="prediccion-de-enfermedad-cardiaca-mediante-pipelines-y-mlops">
 <h1>Predicción de enfermedad cardíaca mediante pipelines y MLOps<a class="headerlink" href="#prediccion-de-enfermedad-cardiaca-mediante-pipelines-y-mlops" title="Permalink to this heading">#</a></h1>
-<p>Este proyecto desarrolla un flujo completo de MLOps para la predicción de enfermedad cardíaca.</p>
+<p>Este proyecto desarrolla un flujo completo de MLOps para la predicción de enfermedad cardíaca utilizando técnicas de aprendizaje supervisado, pipelines de preprocesamiento y herramientas modernas de despliegue y monitoreo.</p>
+<p>El objetivo principal es construir un modelo capaz de identificar pacientes con riesgo de enfermedad cardíaca a partir de variables clínicas y demográficas, integrando buenas prácticas de Machine Learning desde la exploración inicial de los datos hasta la exportación y despliegue del modelo final.</p>
+<p>El conjunto de datos utilizado contiene variables relacionadas con edad, sexo, presión arterial, colesterol, frecuencia cardíaca máxima, dolor en el pecho, resultados electrocardiográficos y otros factores clínicos relevantes. A partir de estas variables se plantea un problema de clasificación binaria en el que se busca predecir la presencia o ausencia de enfermedad cardíaca.</p>
+<p>A lo largo del proyecto se implementan diferentes algoritmos de clasificación, incluyendo regresión logística, máquinas de soporte vectorial, Random Forest, Gradient Boosting y KNN. Además, se emplean técnicas de validación cruzada y búsqueda de hiperparámetros mediante GridSearchCV para identificar el mejor modelo.</p>
+<p>El proyecto también incorpora componentes fundamentales de MLOps, como el desarrollo de una API con FastAPI, la contenedorización con Docker, el despliegue mediante Kubernetes, la automatización con GitHub Actions y el monitoreo de drift con Evidently.</p>
 <section id="contenido">
 <h2>Contenido<a class="headerlink" href="#contenido" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Demostración de data leakage</p></li>
-<li><p>Pipeline con validación cruzada y GridSearchCV</p></li>
-<li><p>API con FastAPI</p></li>
-<li><p>Docker</p></li>
-<li><p>Kubernetes</p></li>
-<li><p>CI con GitHub Actions</p></li>
-<li><p>Monitoreo con Evidently</p></li>
+<li><p>Demostración de data leakage y comparación de escenarios incorrectos y correctos</p></li>
+<li><p>Construcción de pipelines de preprocesamiento y modelado</p></li>
+<li><p>Entrenamiento y comparación de múltiples algoritmos de clasificación</p></li>
+<li><p>Optimización de hiperparámetros mediante GridSearchCV</p></li>
+<li><p>Exportación del mejor modelo entrenado</p></li>
+<li><p>Construcción de una API con FastAPI</p></li>
+<li><p>Contenerización con Docker</p></li>
+<li><p>Despliegue con Kubernetes</p></li>
+<li><p>Integración continua con GitHub Actions</p></li>
+<li><p>Monitoreo de drift y desempeño con Evidently</p></li>
 </ul>
 </section>
 <div class="toctree-wrapper compound">
@@ -455,7 +462,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By Daniela
+By Mariangel Yepes, Daniela Hernández, Alejandras Meneses y Valeria Incer
 </p>
 
   </div>

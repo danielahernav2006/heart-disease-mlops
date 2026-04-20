@@ -604,17 +604,17 @@ Columnas categóricas: [&#39;Sex&#39;, &#39;ChestPainType&#39;, &#39;FastingBS&#
   <tbody>
     <tr>
       <th>1</th>
-      <td>RandomForest</td>
-      <td>0.936872</td>
-      <td>0.880435</td>
-      <td>0.924480</td>
-    </tr>
-    <tr>
-      <th>2</th>
       <td>SVC</td>
       <td>0.933525</td>
       <td>0.858696</td>
       <td>0.917403</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>RandomForest</td>
+      <td>0.932688</td>
+      <td>0.869565</td>
+      <td>0.924910</td>
     </tr>
     <tr>
       <th>3</th>
@@ -633,9 +633,9 @@ Columnas categóricas: [&#39;Sex&#39;, &#39;ChestPainType&#39;, &#39;FastingBS&#
     <tr>
       <th>5</th>
       <td>GradientBoosting</td>
-      <td>0.920851</td>
+      <td>0.920253</td>
       <td>0.858696</td>
-      <td>0.922459</td>
+      <td>0.922120</td>
     </tr>
   </tbody>
 </table>
@@ -676,7 +676,7 @@ Columnas categóricas: [&#39;Sex&#39;, &#39;ChestPainType&#39;, &#39;FastingBS&#
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5899c6f0e02408d6c6cb7d0063ea692c03881d58a140de8387a08ccd496c70f0.png" src="../_images/5899c6f0e02408d6c6cb7d0063ea692c03881d58a140de8387a08ccd496c70f0.png" />
+<img alt="../_images/5be5a6bb013ddf091fbb9251eeb8cae8163c4c66d2efa83331328d0908dcc68a.png" src="../_images/5be5a6bb013ddf091fbb9251eeb8cae8163c4c66d2efa83331328d0908dcc68a.png" />
 </div>
 </div>
 <p>La tabla muestra los resultados de cada modelo sobre el conjunto de prueba, usando métricas como AUC, Accuracy y el promedio del AUC obtenido por validación cruzada (AUC VC).
@@ -698,8 +698,8 @@ En definitiva, todos los modelos evaluados rinden de forma muy parecida. Por eso
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor modelo: RandomForest
-Mejores parámetros: {&#39;clf__max_depth&#39;: 10, &#39;clf__n_estimators&#39;: 100}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor modelo: SVC
+Mejores parámetros: {&#39;clf__C&#39;: 10, &#39;clf__gamma&#39;: 0.1}
 </pre></div>
 </div>
 </div>
@@ -722,7 +722,7 @@ Mejores parámetros: {&#39;clf__max_depth&#39;: 10, &#39;clf__n_estimators&#39;:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d5c4f841c76e83c114788601a399b170fe79ef407a94bea5b3b729e264d1dc9c.png" src="../_images/d5c4f841c76e83c114788601a399b170fe79ef407a94bea5b3b729e264d1dc9c.png" />
+<img alt="../_images/1b3d9ffe0e3206c8ed938b3b939ab600b96c812050bcb4177c130e85956dbab1.png" src="../_images/1b3d9ffe0e3206c8ed938b3b939ab600b96c812050bcb4177c130e85956dbab1.png" />
 </div>
 </div>
 <p>En la matriz de confusión se observa que TP = 71, FP = 11, FN = 10 y TN = 92. Es decir, 71 pacientes que padecen enfermedad cardíaca fueron correctamente identificados por el modelo; 11 pacientes sin enfermedad fueron clasificados incorrectamente como positivos; 10 pacientes con enfermedad cardíaca fueron clasificados erróneamente como sanos, lo cual resulta especialmente crítico en el contexto médico; y 92 pacientes sanos fueron correctamente clasificados. En general, el modelo presenta un buen desempeño; sin embargo, aún se presentan falsos negativos, lo cual es preocupante, ya que implica no detectar pacientes que realmente tienen la enfermedad. En este contexto, esto podría traducirse en consecuencias graves para los pacientes. Por lo tanto, sería recomendable enfocar los esfuerzos en mejorar el recall del modelo, con el fin de reducir este tipo de errores.</p>
@@ -748,7 +748,7 @@ Mejores parámetros: {&#39;clf__max_depth&#39;: 10, &#39;clf__n_estimators&#39;:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9bddd43046531899ac458561e7a2a0e5f9e2bd4e18f8cfd511b9cacfd1b0b41e.png" src="../_images/9bddd43046531899ac458561e7a2a0e5f9e2bd4e18f8cfd511b9cacfd1b0b41e.png" />
+<img alt="../_images/d47c30f60be8c5783eaa33eaca14b9033e71437ee0b74e63647bb52e4d251ee1.png" src="../_images/d47c30f60be8c5783eaa33eaca14b9033e71437ee0b74e63647bb52e4d251ee1.png" />
 </div>
 </div>
 <p>En la curva ROC, el eje horizontal representa la tasa de falsos positivos (FPR), mientras que el eje vertical representa la tasa de verdaderos positivos (TPR), también conocida como recall. Valores más pequeños en el eje FPR indican menos falsos positivos (FP) y más verdaderos negativos (TN), mientras que valores más altos en el eje TPR indican más verdaderos positivos (TP) y menos falsos negativos (FN). En este caso, la curva ROC se encuentra cercana a la esquina superior izquierda, lo que indica un excelente desempeño del modelo. Además, el valor de ROC-AUC de aproximadamente 0.93 confirma que el modelo tiene una alta capacidad de discriminación, logrando separar de manera efectiva a los pacientes con y sin enfermedad cardíaca en función de las probabilidades predichas.</p>
@@ -767,7 +767,7 @@ Mejores parámetros: {&#39;clf__max_depth&#39;: 10, &#39;clf__n_estimators&#39;:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo &#39;RandomForest&#39; exportado exitosamente.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelo &#39;SVC&#39; exportado exitosamente.
 </pre></div>
 </div>
 </div>
@@ -857,7 +857,7 @@ Mejores parámetros: {&#39;clf__max_depth&#39;: 10, &#39;clf__n_estimators&#39;:
   <div class="footer-item">
     
 <p class="component-author">
-By Daniela
+By Mariangel Yepes, Daniela Hernández, Alejandras Meneses y Valeria Incer
 </p>
 
   </div>
