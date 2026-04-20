@@ -1,0 +1,14 @@
+title: Predicción de enfermedad cardíaca mediante pipelines y MLOps
+author: Mariangel Yepes, Daniela Hernández, Alejandras Meneses y Valeria Incer
+logo: Uninorte_Logo.png
+
+execute:
+  execute_notebooks: force
+
+repository:
+  url: https://github.com/danielahernav2006/heart-disease-mlops.git
+  branch: main
+
+html:
+  use_issues_button: true
+  use_repository_button: true
