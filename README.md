@@ -1,22 +1,52 @@
-# Heart Disease MLOps
+# **Heart Disease MLOps**
 
-Predicción de falla cardíaca con un flujo MLOps local: entrenamiento con scikit-learn, API con FastAPI, contenerización con Docker, orquestación con Kubernetes, CI con GitHub Actions y monitoreo de deriva con Evidently.
+Predicción de enfermedad cardíaca mediante un flujo MLOps local, integrando entrenamiento con scikit-learn, despliegue con FastAPI, contenerización con Docker, orquestación con Kubernetes, CI con GitHub Actions y monitoreo de deriva con Evidently.
 
-## Tecnologías
+## Descripción general
 
-- **scikit-learn**: pipeline de entrenamiento con `Pipeline` y `GridSearchCV`
-- **FastAPI**: API REST para predicciones en tiempo real
-- **Docker**: contenerización de la aplicación
-- **Kubernetes (Minikube)**: orquestación local
-- **GitHub Actions**: integración continua (lint + tests)
+Este proyecto implementa un flujo completo de Machine Learning Operations (MLOps) para la predicción de enfermedad cardíaca a partir de variables clínicas y demográficas. Se desarrollan notebooks para el análisis del problema, la detección de data leakage, la construcción de pipelines de preprocesamiento y modelado, así como la comparación de distintos algoritmos de clasificación.
+
+Además, el proyecto incorpora una API para servir predicciones, archivos de despliegue local, pruebas automáticas e integración continua. Como complemento, se construyó un Jupyter Book para documentar y presentar el desarrollo del proyecto de manera estructurada.
+
+## Video de demostración
+
+Se incluye un video donde se muestra el sistema en funcionamiento y el flujo MLOps en producción:
+
+**Video:** https://drive.google.com/file/d/196u_4XiWJGrtcg4vgdAxwkHL5IoPxUfU/view?usp=drivesdk
+
+## Tecnologías utilizadas
+
+- **scikit-learn**: entrenamiento de modelos, pipelines y búsqueda de hiperparámetros con `Pipeline` y `GridSearchCV`
+- **FastAPI**: construcción de la API REST para predicciones en tiempo real
+- **Docker**: contenerización del servicio
+- **Kubernetes (Minikube)**: despliegue local del contenedor
+- **GitHub Actions**: integración continua con linting y pruebas
 - **Evidently**: monitoreo de deriva de datos
+- **Jupyter Book**: documentación interactiva del proyecto
 
-## Estructura
+## Estructura del proyecto
 
-```
+```text
 heart-disease-mlops/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── .vscode/
 ├── app/
-│   └── api.py
+│   ├── __init__.py
+│   ├── api.py
+│   └── model.joblib
+├── book/
+│   ├── _build/
+│   ├── notebooks/
+│   │   ├── 1_model_leakage_demo.ipynb
+│   │   ├── 2_model_pipeline.ipynb
+│   │   └── model.joblib
+│   ├── _config.yml
+│   ├── _toc.yml
+│   ├── intro.md
+│   ├── video.md
+│   └── Uninorte_Logo.png
 ├── docker/
 │   ├── Dockerfile
 │   └── requirements.txt
@@ -24,18 +54,30 @@ heart-disease-mlops/
 │   ├── deployment.yaml
 │   └── service.yaml
 ├── notebooks/
+│   ├── data/
 │   ├── 1_model_leakage_demo.ipynb
 │   └── 2_model_pipeline.ipynb
 ├── tests/
 │   └── test_api.py
-├── .github/
-│   └── workflows/
-│       └── ci.yml
 ├── drift_report.py
 ├── drift_report.html
-├── model.joblib
 └── README.md
 ```
+
+## Flujo del proyecto 
+
+El proyecto se desarrolla en varias etapas:
+
+1. Exploración del dataset y detección de data leakage
+2. Preprocesamiento y modelado seguro con pipelines
+3. Comparación de modelos de clasificación
+4. Exportación del mejor modelo
+5. Construcción de API con FastAPI
+6. Contenerización con Docker
+7. Despliegue con Kubernetes
+8. Automatización con GitHub Actions
+9. Monitoreo con Evidently
+10. Documentación con Jupyter Book
 
 ## Uso
 
@@ -105,3 +147,9 @@ Genera `drift_report.html` con la comparación entre los datos de entrenamiento 
 ## CI/CD
 
 El workflow `.github/workflows/ci.yml` se ejecuta en cada `push` y realiza lint con `flake8` y pruebas con `pytest`.
+
+## Autores:
+- Mariangel Yepes
+- Alejandra Meneses
+- Daniela Hernández
+- Valeria Incer

@@ -4,3 +4,4 @@ root: intro
 chapters:
   - file: notebooks/1_model_leakage_demo
   - file: notebooks/2_model_pipeline
+  - file: video
