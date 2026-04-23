@@ -148,7 +148,7 @@ Genera `drift_report.html` con la comparación entre los datos de entrenamiento 
 
 El workflow `.github/workflows/ci.yml` se ejecuta en cada `push` y realiza lint con `flake8` y pruebas con `pytest`.
 
-## Autores:
+## Autoras:
 - Mariangel Yepes
 - Alejandra Meneses
 - Daniela Hernández
